@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    <form action="." method="POST">
+        <label  for="text"></label>
+        <div class="text">
+            <input type="text" id="text" name="text">
+        </div>
+        <div>
+            <input type="submit" value="search">
+        </div>
+        {% csrf_token %}
+    </form>
+    <div class="event">
+
+    </div>
+    <div class="new">
+
+    </div>
+</body>
+</html>

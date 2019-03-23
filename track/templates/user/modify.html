@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>修改信息</title>
+{% endblock %}
+
+{% block content %}
+<div class="tijiaobianji">
+    <div id="container">
+        <form method="post">
+        <div class="modifypart">
+            <div class="form-row field-first_name">
+                <div>
+                    <label for="id_first_name">Name | 名字:</label>
+                    <input class="vTextField" id="id_first_name" maxlength="30" name="firstname" type="text">
+                </div>
+            </div>
+
+            <div class="form-row field-last_name">
+                <div>
+                    <label for="id_last_name">Surname | 姓氏:</label>
+                    <input class="vTextField" id="id_last_name" maxlength="30" name="lastname" type="text">
+                </div>
+            </div>
+
+            <div class="form-row field-email">
+                <div>
+                    <label for="id_email">Address | 电子邮件地址:</label>
+                    <input class="vTextField" id="id_email" maxlength="254" name="email" type="email">
+                </div>
+            </div>
+
+            <div class="form-row field-nickname">
+                <div>
+                    <label for="id_nickname">Nick | 昵称:</label>
+                    <input class="vTextField" id="id_nickname" maxlength="200" name="nickname" type="text">
+                </div>
+            </div>
+
+            <div class="form-row field-birth">
+                <div>
+                    <label for="id_birth">Birth | 生日:</label>
+                    <input class="vDateField" id="id_birth" name="birth" size="10" type="text" placeholder="YYYY:MM:DD">
+                </div>
+            </div>
+
+            <div class="form-row field-sex">
+                <div>
+                    <label class="required" for="id_sex">Sex | 性别:</label>
+                    <select id="id_sex" name="sex">
+                        <option value="保密">保密</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="submit-row">
+            <input type="submit" value="保存" class="default" name="_save">
+            </div>
+        </div>
+
+        <div class="errorpart">
+            <div class="error_firstname">
+                {{ errors.firstname }}
+            </div>
+            <div class="error_lastname">
+                {{ errors.lastname }}
+            </div>
+            <div class="error_email">
+                {{ errors.email }}
+            </div>
+            <div class="error_nickname">
+                {{ errors.nickname }}
+            </div>
+            <div class="error_birth">
+                {{ errors.birth }}
+            </div>
+        </div>
+    {% csrf_token %}
+    </form>
+    </div>
+</div>
+{% endblock %}

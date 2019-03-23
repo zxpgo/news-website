@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}事件{% endblock %}
+{% block content %}
+<div class="list_main">
+    <div class="list_box">
+        <h2 >事件中心</h2>
+        <h1 class="tit">{{ event.title }}<br>
+            {% if request.user.is_authenticated %}
+                {% if is_followed %}
+                <a href="/events/{{ event.id }}/unfollow">取消关注</a>
+                {% else %}
+                <a href="/events/{{ event.id }}/follow">关注</a>
+                {% endif %}
+            {% endif %}
+        </h1>
+        <p class="newsInfo">开始时间：{{ event.starttime }}&nbsp;&nbsp;结束时间：{{ event.endtime }}&nbsp;&nbsp;关注人数：{{ event.followed }}</p>
+        <div class="newsContent">
+            {% if event.cover %}
+            <p align="center" ><img src="/static/images/{{ event.cover }}" width="600" height="420" alt=""/></p>
+            {% endif %}
+                <p>{{ event.summary }}</p>
+            <ul>
+            {% for new in event.new_set.all %}
+                <li><a href="/events/{{ new.id }}/newdetail">{{ new.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

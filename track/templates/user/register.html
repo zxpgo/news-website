@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CUR | 注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% load staticfiles %}
+    <link href="{% static "css/register.css" %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header class="header">Welcome to <span>CUR</span></header>
+<form action="http://127.0.0.1:8000/users/register" method="POST">
+    <div class="signpart">
+        <ul>
+            <li >
+                <label for="username"></label>
+                <i class="icon iconfont">&#xe78b;</i>
+                <input type="text" id="username" name="username" placeholder="用户名">
+                </li>
+            <li >
+                <label for="email"></label>
+                <i class="icon iconfont">&#xe7bd;</i>
+                <input type="text" id="email" name="email" placeholder="输入邮箱以便登录和找回" >
+                </li>
+            <li>
+                <label for="password"></label>
+                <i class="icon iconfont">&#xe6c0;</i>
+                <input type="password" id="password" name="password" placeholder="Password">
+               </li>
+            <li>
+                <label for="password_confirm"></label>
+                <i class="icon iconfont">&#xe645;</i>
+                <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirmpassword" >
+                </li>
+            <li>
+                <input  type="submit" value="Sign up">
+            </li>
+            </ul>
+    </div>
+    <div class="errorpart">
+        <div class="error_username">
+            {{ errors.username }}
+        </div>
+        <div class="error_email">
+            {{ errors.email }}
+        </div>
+        <div class="error_password">
+            {{ errors.password }}
+        </div>
+        <div class="error_password_confirm">
+            {{ errors.password_confirm }}
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
+<div id="cntvlive2-is-installed"></div>
+</body>
+</html>

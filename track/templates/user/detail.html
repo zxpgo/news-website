@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}用户中心{% endblock %}
+{% block content %}
+<div class="wrap_use">
+    <div class="inf">
+        <div class="user_int">
+            <div class="user1">
+                <img src="/static/images/avatar.jpg" width="80" height="80" alt=""/>
+            </div>
+            <div class="function">
+                <ul>
+                    <li><a href="#"><i class="icon iconfont">&#xe604;</i>  粉丝数:{{ user.fans }}</a></li>
+                    {% if self %}
+                        <li><a href="/users/modify"><i class="icon iconfont">&#xe60d;</i>  修改资料</a></li>
+                    {% else %}
+                        {% if is_followed %}
+                            <li><a href="/users/{{ user.id }}/unstar"><i class="icon iconfont">&#xe60d;</i>  取消关注</a></li>
+                        {% else %}
+                            <li><a href="/users/{{ user.id }}/star"><i class="icon iconfont">&#xe60d;</i>  关注Ta</a></li>
+                        {% endif %}
+                    {% endif %}
+                    <li><a href="/events/home"> <i class="icon iconfont">&#xe67e;</i>  查看推送</a></li>
+                    <li><a href="#"><i class="icon iconfont">&#xe667;</i>  发送消息</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="use_inf">
+            <div class="use_data_head">{{ user.username }}的资料</div>
+            <div class="use_data">
+                <ul>
+                    <li>昵&nbsp&nbsp&nbsp称: {{ user.nickname }}</li>
+                    <li>用户名: {{ user.username }}</li>
+                    <li>邮&nbsp&nbsp&nbsp箱: {{ user.email }}</li>
+                    <li>名&nbsp&nbsp&nbsp字: {{ user.first_name }}</li>
+                    <li>姓&nbsp&nbsp&nbsp氏: {{ user.last_name }}</li>
+                    <li>性&nbsp&nbsp&nbsp别: {{ user.sex }}</li>
+                    <li>生&nbsp&nbsp&nbsp日: {{ user.birth }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

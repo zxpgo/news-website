@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}广场{% endblock %}
+{% block content %}
+<div class="list_main">
+    <div class="list_box">
+        <h2 >新闻中心</h2>
+        <h1 class="tit">{{ new.title }}</h1>
+        {% if new.user %}
+            <p class="newsInfo">提交用户：{{ new.user.username }}&nbsp;&nbsp;时间：{{ new.time }}&nbsp;&nbsp;源地址：{{ new.source }}</p>
+        {% else %}
+            <p class="newsInfo">提交用户：管理员&nbsp;&nbsp;时间：{{ new.time }}&nbsp;&nbsp;源地址：{{ new.source }}</p>
+        {% endif %}
+        <div class="newsContent">
+            {% if new.image %}
+            <p align="center" ><img src="/static/images/{{ new.image }}" width="600" height="420" alt=""/></p>
+            {% endif %}
+            <p>{{ new.text }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

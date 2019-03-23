@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}提交新闻{% endblock %}
+{% block content %}
+<div class="tijiaobianji">
+<form action="http://127.0.0.1:8000/events/create/" method="post">
+    <div class="submitpart">
+        <ul>
+            <li><div class="form-row field-title">
+                <label class="required" for="id_title">Title | 新闻标题:</label><br>
+                <input class="vTextField" id="id_title" maxlength="80" name="title" type="text" placeholder="10-80个字符">
+                </div></li>
+            <li>
+                <div class="form-row field-time">
+                    <label class="required" for="id_time">Time | 新闻时间:</label><br>
+                    <input class="vTextField" id="id_time" name="time" size="18" type="text" placeholder="YYYY-MM-DD HH:MM:SS">
+                </div></li>
+            <li>
+                <div class="form-row field-text">
+                    <label class="required" for="id_text">Text | 新闻内容:</label><br>
+                    <textarea class="vLargeTextField" cols="40" id="id_text" maxlength="10000" name="text" rows="10" placeholder="10-10000个字符"></textarea>
+                </div></li>
+            <li>
+                <div class="form-row field-image">
+                    <label for="id_image">Image  | 新闻配图(可选):</label><br>
+                    <input id="id_image" name="image" type="file">
+                </div></li>
+            <li>
+                <div class="form-row field-source">
+                    <label class="required" for="id_source">Source  | 新闻源链接:</label><br>
+                    <input class="vURLField" id="id_source" maxlength="200" name="source" type="url">
+                </div></li>
+            <li>
+                <div class="form-row field-event">
+                    <label class="required" for="id_event">Event  | 新闻所属事件:</label><br>
+                    <div class="related-widget-wrapper">
+                        <select id="id_event" name="event">
+                            <option value="" selected="selected">---------</option>
+                            {% for event in event_list %}
+                            <option value="{{ event }}">{{ event.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div></li>
+            <li>
+                <div class="submit-row">
+                    <input type="submit" value="submit" class="default" name="_save">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="errorpart">
+        <div class="error_title">
+            {{ kwargs.errors.title }}
+        </div>
+        <div class="error_time">
+            {{ kwargs.errors.time }}
+        </div>
+        <div class="error_text">
+            {{ kwargs.errors.text }}
+        </div>
+        <div class="error_image">
+            {{ kwargs.errors.image }}
+        </div>
+        <div class="error_source">
+            {{ kwargs.errors.source }}
+        </div>
+        <div class="error_event">
+            {{ kwargs.errors.event }}
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
+</div>
+{% endblock %}
